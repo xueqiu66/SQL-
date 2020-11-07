@@ -22,6 +22,11 @@ SELECT MAX(salary) AS SecondHighestSalary
 FROM Employee
 WHERE salary < (SELECT MAX(Salary) FROM Employee);
 
+OR
+SELECT MAX(Salary) AS SecondHighestSalary 
+FROM Employee 
+WHERE Salary NOT IN(SELECT MAX(Salary) FROM Employee);
+
 (2)
 SELECT IFNULL(
 (SELECT DISTINCT salary
