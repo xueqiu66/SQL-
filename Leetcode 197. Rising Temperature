@@ -44,3 +44,9 @@ FROM Weather w
 JOIN Weather
 ON DATEDIFF(w.recordDate, weather.recordDate)=1
 WHERE w.Temperature > weather.Temperature;
+
+OR
+SELECT w2.id
+FROM weather w1, w2
+WHERE w2.Temperature > w1. Temperature
+AND to_days(w1.recordDate)+1 = to_days(w2.recordDate);
