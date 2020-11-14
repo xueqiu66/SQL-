@@ -18,5 +18,14 @@ For example, after running your query, the above Person table should have the fo
 +----+------------------+
 
 SOLUTION:
+(1)
 DELETE FROM Person
 WHERE Id NOT IN (SELECT * FROM (SELECT MIN(Id) FROM Person Group by email) temp);
+(2)
+DELETE P1 
+FROM Person P1, Person P2
+WHERE P1.Email=P2.Email AND P1.Id > P2.Id;
+(3)
+WITH temp AS(SELECT MIN(Id) FROM Person GROUP BY Email)
+DELETE FROM Person
+WHERE Id NOT IN SELECT * FROM temp;
