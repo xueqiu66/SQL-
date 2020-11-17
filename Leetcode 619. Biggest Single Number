@@ -22,3 +22,13 @@ For the sample data above, your query should return the following result:
 SOLUTION:
 SELECT MAX(num) AS num
 FROM (SELECT MAX(num) AS num FROM my_numbers GROUP BY num HAVING COUNT(num)=1)temp;
+
+
+OR
+SELECT MAX(num) AS num
+FROM my_numbers
+WHERE num NOT IN 
+(SELECT num
+FROM my_numbers
+GROUP BY num
+HAVING COUNT(num)>1);
